@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Santosh Wavhale – Technical Support Engineer & System Analyst Portfolio"/>
+<title>Santosh Wavhale | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#0B0B0F;
+  --bg2:#11111A;
+  --bg3:#16162A;
+  --blue:#3B82F6;
+  --purple:#8B5CF6;
+  --cyan:#06B6D4;
+  --blue-glow:rgba(59,130,246,0.3);
+  --purple-glow:rgba(139,92,246,0.3);
+  --cyan-glow:rgba(6,182,212,0.25);
+  --text:#F8FAFC;
+  --text2:#CBD5E1;
+  --text3:#64748B;
+  --glass:rgba(255,255,255,0.04);
+  --glass-border:rgba(255,255,255,0.08);
+  --radius:16px;
+  --radius-sm:10px;
+}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* ── CUSTOM CURSOR ── */
+#cursor{position:fixed;width:12px;height:12px;border-radius:50%;background:var(--blue);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.1s,background 0.2s;mix-blend-mode:difference;}
+#cursor-ring{position:fixed;width:36px;height:36px;border-radius:50%;border:1.5px solid rgba(59,130,246,0.5);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all 0.15s ease;} 
+
+/* ── SCROLL PROGRESS ── */
+#scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--purple),var(--cyan));z-index:1000;transition:width 0.1s;}
+
+/* ── PARTICLES ── */
+#particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.particle{position:absolute;border-radius:50%;animation:float linear infinite;}
+@keyframes float{0%{transform:translateY(100vh) rotate(0deg);opacity:0;}10%{opacity:1;}90%{opacity:0.3;}100%{transform:translateY(-100px) rotate(720deg);opacity:0;}}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  padding:1rem 2.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(11,11,15,0.7);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--glass-border);
+  transition:all 0.3s;
+}
+.nav-logo{font-size:1.3rem;font-weight:800;background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:0.85rem;font-weight:500;transition:color 0.2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:linear-gradient(90deg,var(--blue),var(--purple));transition:width 0.3s;}
+.nav-links a:hover{color:var(--text);}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border:none;padding:8px 20px;border-radius:8px;font-size:0.82rem;font-weight:600;cursor:pointer;transition:opacity 0.2s,transform 0.2s;}
+.nav-cta:hover{opacity:0.85;transform:translateY(-1px);}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;display:flex;align-items:center;
+  position:relative;overflow:hidden;
+  padding:8rem 2.5rem 4rem;
+}
+.hero-bg-blob{
+  position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;
+  animation:blobMove 8s ease-in-out infinite;
+}
+@keyframes blobMove{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(30px,-20px) scale(1.05);}66%{transform:translate(-20px,15px) scale(0.97);}}
+.blob1{width:500px;height:500px;background:rgba(59,130,246,0.12);top:-100px;right:-100px;animation-delay:0s;}
+.blob2{width:400px;height:400px;background:rgba(139,92,246,0.1);bottom:-50px;left:-80px;animation-delay:-3s;}
+.blob3{width:300px;height:300px;background:rgba(6,182,212,0.08);top:40%;left:40%;animation-delay:-5s;}
+.hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.3);color:var(--blue);font-size:0.75rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;border-radius:20px;margin-bottom:1.5rem;}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(6,182,212,0.5);}50%{opacity:0.7;box-shadow:0 0 0 6px rgba(6,182,212,0);}}
+.hero-name{font-size:clamp(2.5rem,5vw,4rem);font-weight:900;line-height:1.1;margin-bottom:0.5rem;letter-spacing:-1px;}
+.hero-name .grad{background:linear-gradient(135deg,var(--blue) 0%,var(--purple) 50%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-role{font-size:1.1rem;color:var(--text2);font-weight:500;margin-bottom:1rem;}
+.hero-summary{font-size:0.95rem;color:var(--text3);line-height:1.8;margin-bottom:1.5rem;max-width:500px;}
+.typing-wrapper{font-size:1rem;color:var(--cyan);font-weight:600;margin-bottom:2rem;height:28px;}
+#typing-text::after{content:'|';animation:blink 1s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2rem;}
+.btn-grad{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border:none;padding:12px 28px;border-radius:10px;font-size:0.88rem;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:transform 0.2s,box-shadow 0.2s;}
+.btn-grad:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(59,130,246,0.4);}
+.btn-ghost{border:1.5px solid var(--glass-border);color:var(--text);padding:12px 28px;border-radius:10px;font-size:0.88rem;font-weight:500;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:border-color 0.2s,background 0.2s,transform 0.2s;background:transparent;}
+.btn-ghost:hover{border-color:var(--blue);background:rgba(59,130,246,0.08);transform:translateY(-2px);}
+.hero-socials{display:flex;gap:12px;}
+.social-icon{width:38px;height:38px;border-radius:10px;border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;color:var(--text3);text-decoration:none;font-size:0.9rem;transition:all 0.2s;background:var(--glass);}
+.social-icon:hover{border-color:var(--blue);color:var(--blue);background:rgba(59,130,246,0.1);transform:translateY(-2px);}
+/* Avatar */
+.hero-avatar-wrap{display:flex;justify-content:center;align-items:center;position:relative;}
+.avatar-ring{
+  width:320px;height:320px;border-radius:50%;position:relative;
+  background:linear-gradient(135deg,var(--blue),var(--purple),var(--cyan));
+  padding:3px;animation:spin-ring 6s linear infinite;
+}
+@keyframes spin-ring{0%{filter:hue-rotate(0deg);}100%{filter:hue-rotate(360deg);}}
+.avatar-inner{width:100%;height:100%;border-radius:50%;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:5rem;font-weight:900;background:linear-gradient(135deg,var(--bg2),var(--bg3));}
+.avatar-glow{position:absolute;inset:-20px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,0.2) 0%,transparent 70%);animation:glowPulse 3s ease-in-out infinite;}
+@keyframes glowPulse{0%,100%{opacity:0.5;}50%{opacity:1;}}
+.float-badge{position:absolute;background:var(--glass);backdrop-filter:blur(10px);border:1px solid var(--glass-border);border-radius:12px;padding:8px 14px;font-size:0.8rem;font-weight:600;display:flex;align-items:center;gap:6px;white-space:nowrap;}
+.fb1{top:20px;right:-20px;color:var(--blue);}
+.fb2{bottom:40px;left:-30px;color:var(--cyan);}
+.fb3{top:50%;right:-40px;color:var(--purple);}
+/* Scroll indicator */
+.scroll-indicator{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--text3);font-size:0.75rem;}
+.scroll-dot{width:6px;height:30px;border:1.5px solid var(--text3);border-radius:3px;position:relative;overflow:hidden;}
+.scroll-dot::after{content:'';position:absolute;top:-100%;left:50%;transform:translateX(-50%);width:3px;height:8px;background:var(--blue);border-radius:2px;animation:scrollAnim 1.8s ease-in-out infinite;}
+@keyframes scrollAnim{0%{top:-100%;}100%{top:120%;}}
+
+/* ── SECTIONS ── */
+section{padding:6rem 2.5rem;position:relative;z-index:1;}
+.section-max{max-width:1200px;margin:0 auto;}
+.section-label{font-size:0.72rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;background:linear-gradient(90deg,var(--blue),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0.5rem;}
+.section-title{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;margin-bottom:1rem;letter-spacing:-0.5px;}
+.section-sub{font-size:0.95rem;color:var(--text3);max-width:560px;line-height:1.7;margin-bottom:3rem;}
+
+/* ── GLASS CARD ── */
+.glass-card{
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:var(--radius);
+  backdrop-filter:blur(20px);
+  transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;
+}
+.glass-card:hover{border-color:rgba(59,130,246,0.3);transform:translateY(-4px);box-shadow:0 20px 60px rgba(59,130,246,0.15);}
+
+/* ── ABOUT ── */
+#about{background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.about-text p{font-size:0.95rem;color:var(--text2);line-height:1.8;margin-bottom:1rem;}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem;}
+.stat-card{glass-card;background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius-sm);padding:1.25rem;text-align:center;transition:all 0.3s;}
+.stat-card:hover{border-color:rgba(59,130,246,0.4);box-shadow:0 0 20px var(--blue-glow);}
+.stat-num{font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--blue),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.stat-lbl{font-size:0.78rem;color:var(--text3);margin-top:2px;}
+.about-qualities{display:grid;grid-template-columns:1fr;gap:0.75rem;}
+.quality-item{display:flex;align-items:flex-start;gap:10px;padding:1rem;background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius-sm);transition:all 0.2s;}
+.quality-item:hover{border-color:rgba(139,92,246,0.3);background:rgba(139,92,246,0.05);}
+.quality-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.quality-text h4{font-size:0.88rem;font-weight:600;margin-bottom:2px;}
+.quality-text p{font-size:0.8rem;color:var(--text3);line-height:1.5;}
+
+/* ── SKILLS ── */
+#skills{background:var(--bg2);}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;}
+.skill-card{
+  background:var(--glass);border:1px solid var(--glass-border);
+  border-radius:var(--radius-sm);padding:1.25rem;text-align:center;
+  transition:all 0.3s;cursor:default;
+}
+.skill-card:hover{transform:translateY(-6px);border-color:var(--hc,rgba(59,130,246,0.4));box-shadow:0 12px 40px var(--hs,var(--blue-glow));}
+.skill-icon{font-size:1.8rem;margin-bottom:0.75rem;display:block;}
+.skill-name{font-size:0.82rem;font-weight:600;color:var(--text2);margin-bottom:0.75rem;}
+.skill-bar{height:3px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;}
+.skill-fill{height:100%;border-radius:2px;transition:width 1.5s ease;}
+
+/* ── EXPERIENCE ── */
+#experience{background:var(--bg);}
+.timeline{position:relative;padding-left:2rem;}
+.timeline::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:1.5px;background:linear-gradient(to bottom,var(--blue),var(--purple),transparent);}
+.tl-item{position:relative;margin-bottom:2.5rem;}
+.tl-dot{position:absolute;left:-1.93rem;top:8px;width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--purple));box-shadow:0 0 12px var(--blue-glow);}
+.tl-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius);padding:1.5rem;transition:all 0.3s;}
+.tl-card:hover{border-color:rgba(59,130,246,0.3);box-shadow:0 8px 30px rgba(59,130,246,0.1);}
+.tl-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:0.75rem;flex-wrap:wrap;}
+.tl-role{font-size:1rem;font-weight:700;color:var(--text);}
+.tl-company{font-size:0.85rem;color:var(--blue);font-weight:500;margin-top:2px;}
+.tl-date{font-size:0.75rem;font-weight:600;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);color:var(--blue);padding:3px 10px;border-radius:20px;white-space:nowrap;}
+.tl-bullets{list-style:none;display:flex;flex-direction:column;gap:6px;margin-top:0.75rem;}
+.tl-bullets li{font-size:0.875rem;color:var(--text2);line-height:1.6;display:flex;gap:8px;}
+.tl-bullets li::before{content:'▸';color:var(--cyan);flex-shrink:0;margin-top:1px;}
+.tl-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:1rem;}
+.tl-tag{font-size:0.72rem;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.2);color:var(--purple);padding:3px 10px;border-radius:6px;}
+
+/* ── PROJECTS ── */
+#projects{background:var(--bg2);}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;}
+.project-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius);overflow:hidden;transition:all 0.3s;}
+.project-card:hover{transform:translateY(-6px);border-color:rgba(59,130,246,0.3);box-shadow:0 20px 60px rgba(59,130,246,0.15);}
+.project-img{height:180px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;overflow:hidden;}
+.project-body{padding:1.25rem;}
+.project-title{font-size:1rem;font-weight:700;margin-bottom:6px;}
+.project-desc{font-size:0.85rem;color:var(--text3);line-height:1.6;margin-bottom:1rem;}
+.project-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem;}
+.project-tag{font-size:0.7rem;background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.2);color:var(--cyan);padding:2px 8px;border-radius:5px;}
+.project-btns{display:flex;gap:8px;}
+.project-btn{font-size:0.78rem;padding:6px 14px;border-radius:7px;border:1px solid var(--glass-border);color:var(--text2);text-decoration:none;cursor:pointer;background:transparent;transition:all 0.2s;}
+.project-btn:hover{border-color:var(--blue);color:var(--blue);}
+.project-btn.primary{background:linear-gradient(135deg,var(--blue),var(--purple));border-color:transparent;color:#fff;}
+.project-btn.primary:hover{opacity:0.85;}
+
+/* ── CERTIFICATIONS ── */
+#certifications{background:var(--bg);}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem;}
+.cert-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius-sm);padding:1.5rem;display:flex;gap:1rem;align-items:flex-start;transition:all 0.3s;}
+.cert-card:hover{border-color:rgba(139,92,246,0.3);box-shadow:0 8px 30px var(--purple-glow);}
+.cert-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+.cert-name{font-size:0.9rem;font-weight:600;margin-bottom:4px;}
+.cert-org{font-size:0.78rem;color:var(--text3);}
+
+/* ── ACHIEVEMENTS ── */
+#achievements{background:var(--bg2);}
+.ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.ach-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius);padding:2rem;text-align:center;transition:all 0.3s;position:relative;overflow:hidden;}
+.ach-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--grad1,rgba(59,130,246,0.05)),transparent);pointer-events:none;}
+.ach-card:hover{transform:translateY(-4px);box-shadow:0 16px 50px var(--ach-glow,var(--blue-glow));}
+.ach-num{font-size:2.8rem;font-weight:900;background:var(--ach-grad,linear-gradient(135deg,var(--blue),var(--cyan)));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
+.ach-unit{font-size:1.2rem;}
+.ach-label{font-size:0.82rem;color:var(--text3);margin-top:6px;line-height:1.4;}
+
+/* ── CONTACT ── */
+#contact{background:var(--bg);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;}
+.contact-info{display:flex;flex-direction:column;gap:1rem;}
+.contact-item{display:flex;align-items:center;gap:12px;padding:1rem;background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius-sm);transition:all 0.2s;}
+.contact-item:hover{border-color:rgba(59,130,246,0.3);background:rgba(59,130,246,0.05);}
+.contact-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.contact-label{font-size:0.75rem;color:var(--text3);}
+.contact-val{font-size:0.9rem;font-weight:500;color:var(--text);}
+.contact-form{display:flex;flex-direction:column;gap:1rem;}
+.form-input{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius-sm);padding:12px 16px;color:var(--text);font-family:'Inter',sans-serif;font-size:0.9rem;outline:none;transition:border-color 0.2s;}
+.form-input::placeholder{color:var(--text3);}
+.form-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(59,130,246,0.1);}
+textarea.form-input{resize:vertical;min-height:120px;}
+.form-submit{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border:none;padding:13px 28px;border-radius:10px;font-size:0.9rem;font-weight:600;cursor:pointer;transition:all 0.2s;}
+.form-submit:hover{opacity:0.85;transform:translateY(-1px);box-shadow:0 8px 30px rgba(59,130,246,0.4);}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--bg2);padding:3rem 2.5rem 1.5rem;
+  border-top:1px solid var(--glass-border);
+  position:relative;overflow:hidden;
+}
+.footer-wave{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--purple),var(--cyan),var(--blue));background-size:200%;animation:waveMove 3s linear infinite;}
+@keyframes waveMove{0%{background-position:0%;}100%{background-position:200%;}}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-copy{font-size:0.82rem;color:var(--text3);}
+.footer-socials{display:flex;gap:10px;}
+.back-top{width:40px;height:40px;border-radius:10px;background:var(--glass);border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text3);transition:all 0.2s;font-size:1rem;}
+.back-top:hover{border-color:var(--blue);color:var(--blue);}
+
+/* ── REVEAL ANIMATIONS ── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-30px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal-left.visible{opacity:1;transform:translateX(0);}
+.reveal-right{opacity:0;transform:translateX(30px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal-right.visible{opacity:1;transform:translateX(0);}
+
+/* ── SPOTLIGHT ── */
+#spotlight{position:fixed;width:400px;height:400px;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle,rgba(59,130,246,0.04) 0%,transparent 70%);transform:translate(-50%,-50%);transition:opacity 0.3s;}
+
+@media(max-width:900px){
+  .hero-inner,.about-grid,.contact-grid{grid-template-columns:1fr;}
+  .ach-grid{grid-template-columns:repeat(2,1fr);}
+  nav .nav-links{display:none;}
+  .hero-avatar-wrap{display:none;}
+}
+@media(max-width:600px){
+  .ach-grid{grid-template-columns:1fr 1fr;}
+  section{padding:4rem 1.25rem;}
+  nav{padding:1rem 1.25rem;}
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<div id="scroll-progress"></div>
+<div id="spotlight"></div>
+
+<!-- Particles -->
+<div id="particles"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">SW.</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Hire Me</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-blob blob1"></div>
+  <div class="hero-bg-blob blob2"></div>
+  <div class="hero-bg-blob blob3"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge">Available for opportunities</div>
+      <h1 class="hero-name">Santosh<br><span class="grad">Wavhale</span></h1>
+      <p class="hero-role">Technical Support Engineer &nbsp;·&nbsp; System Analyst</p>
+      <p class="hero-summary">3+ years delivering end-to-end IT support, system analysis, and data-driven solutions in UAT & Production environments.</p>
+      <div class="typing-wrapper">I specialize in <span id="typing-text"></span></div>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-grad">📩 Contact Me</a>
+        <a href="#" class="btn-ghost" onclick="alert('Resume download link — add your PDF URL here.')">⬇ Download Resume</a>
+      </div>
+      <div class="hero-socials">
+        <a href="https://www.linkedin.com/in/wavhale-santosh-93a1903b6" target="_blank" class="social-icon" title="LinkedIn">in</a>
+        <a href="https://github.com/SantoshWavhale" target="_blank" class="social-icon" title="GitHub">⌥</a>
+        <a href="mailto:santoshwavhale@gmail.com" class="social-icon" title="Email">@</a>
+      </div>
+    </div>
+    <div class="hero-avatar-wrap">
+      <div class="avatar-glow"></div>
+      <div class="avatar-ring">
+        <div class="avatar-inner">SW</div>
+      </div>
+      <div class="float-badge fb1">🛠 System Analyst</div>
+      <div class="float-badge fb2">📊 Data & ETL</div>
+      <div class="float-badge fb3">⚡ 3+ Yrs Exp</div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-dot"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-max">
+    <div class="about-grid">
+      <div class="reveal-left">
+        <div class="section-label">Who I Am</div>
+        <h2 class="section-title">About Me</h2>
+        <div class="about-text">
+          <p>I'm a dedicated Technical Support Engineer and System Analyst with over 3 years of hands-on experience in production and UAT environments at Aurus Tech Pvt. Ltd., Pune.</p>
+          <p>My work revolves around diagnosing complex system issues, building ETL pipelines, creating performance dashboards, and ensuring every client interaction ends with clarity and resolution.</p>
+          <p>I bridge the gap between data and decisions — transforming raw transactional data into insights that drive strategic business outcomes.</p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-card glass-card" style="background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.15);border-radius:12px;padding:1.25rem;text-align:center;">
+            <div class="stat-num">3+</div><div class="stat-lbl">Years Experience</div>
+          </div>
+          <div class="stat-card" style="background:rgba(139,92,246,0.05);border:1px solid rgba(139,92,246,0.15);border-radius:12px;padding:1.25rem;text-align:center;">
+            <div class="stat-num" style="background:linear-gradient(135deg,var(--purple),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:2rem;font-weight:800;">100%</div><div class="stat-lbl">SLA Compliance</div>
+          </div>
+          <div class="stat-card" style="background:rgba(6,182,212,0.05);border:1px solid rgba(6,182,212,0.15);border-radius:12px;padding:1.25rem;text-align:center;">
+            <div class="stat-num" style="background:linear-gradient(135deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:2rem;font-weight:800;">ETL</div><div class="stat-lbl">Data Pipelines Built</div>
+          </div>
+          <div class="stat-card" style="background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.15);border-radius:12px;padding:1.25rem;text-align:center;">
+            <div class="stat-num">B.E.</div><div class="stat-lbl">Information Technology</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="about-qualities">
+          <div class="quality-item">
+            <div class="quality-icon" style="background:rgba(59,130,246,0.1);">🔍</div>
+            <div class="quality-text"><h4>Analytical Thinker</h4><p>Transform complex system data into clear, actionable insights for business decision-making.</p></div>
+          </div>
+          <div class="quality-item">
+            <div class="quality-icon" style="background:rgba(6,182,212,0.1);">🗄️</div>
+            <div class="quality-text"><h4>Data Expert</h4><p>Skilled in SQL, ETL pipelines, Oracle, PostgreSQL and advanced Excel dashboards.</p></div>
+          </div>
+          <div class="quality-item">
+            <div class="quality-icon" style="background:rgba(139,92,246,0.1);">💻</div>
+            <div class="quality-text"><h4>Front-End Developer</h4><p>Build interactive UIs with React JS, JavaScript, Redux, Tailwind CSS and modern web tech.</p></div>
+          </div>
+          <div class="quality-item">
+            <div class="quality-icon" style="background:rgba(59,130,246,0.1);">🤝</div>
+            <div class="quality-text"><h4>Client Communicator</h4><p>Escalate issues clearly, collaborate across teams, and keep stakeholders informed throughout.</p></div>
+          </div>
+          <div class="quality-item">
+            <div class="quality-icon" style="background:rgba(6,182,212,0.1);">📈</div>
+            <div class="quality-text"><h4>Continuous Improver</h4><p>Always seeking ways to optimize processes, reduce errors, and improve system performance.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-max">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label">What I Know</div>
+      <h2 class="section-title">Technical Skills</h2>
+      <p class="section-sub" style="margin:0 auto 3rem;">A versatile toolkit built over 3+ years of real-world system support and development work.</p>
+    </div>
+    <div class="skills-grid">
+      <!-- Each card: icon, name, bar level, hover color -->
+      <div class="skill-card reveal" style="--hc:rgba(247,223,30,0.3);--hs:rgba(247,223,30,0.15);">
+        <span class="skill-icon">🟨</span>
+        <div class="skill-name">JavaScript</div>
+        <div class="skill-bar"><div class="skill-fill" data-w="82%" style="background:linear-gradient(90deg,#F7DF1E,#F0A500);"></div></div>
+      </div>
+      <div class="skill-card reveal" style="--hc:rgba(97,218,251,0.3);--hs:rgba(97,218,251,0.15);">
+        <span class="skill-icon">⚛️</span>
+        <div class="skill-name">React JS</div>
+        <div class="skill-bar"><div class="skill-fill" data-w="78%" style="background:linear-gradient(90deg,#61DAFB,#21A0BF);"></div></div>
+      </div>
+      <div class="skill-card reveal" style="--hc:rgba(59,130,246,0.4);--hs:rgba(59,130,246,0.2);">
+        <span class="skill-icon">🗄️</span>
+        <div class="skill-name">SQL</div>
+        <div class="skill-bar"><div class="skill-fill" data-w="88%" style="background:linear-gradient(90deg,var(--blue),var(--cyan));"></div></div>
+      </div>
+      <div class="skill-card reveal" style="--hc:rgba(255,100,50,0.3);--hs:rgba(255,100,50,0.15);">
+        <span class="skill-icon">🔶</span>
+        <div class="skill-name">Oracle DB</div>
+        <div class="skill-bar"><div class="skill-fill" data-w="75%" style="background:linear-gradient(90deg,#FF6432,#E0401A);"></div></div>
+      </div>
+      <div class="skill-card reveal" style="--hc:rgba(51,103,145,0.4);--hs:rgba(51,103,145,0.2);">
+        <span class="skill-icon">🐘</span>
+        <div class="skill-name">PostgreSQL</div>
+        <div class="skill-bar"><div class="skill-fill" data-w="72%" style="background:linear-gradient(90deg,#336791,#1a4d73);"></div></div>
+      </div>
+      <div class="skill-card reveal" style="--hc:rgba(6,182,212,0.3);--hs:rgba(6,182,212,0.15);">
+        <span class="skill-icon">📊</span>
+        <div class="skill-name">MS Excel</div>
+        <div class="skill-bar"><div class="skill-fill" data-w="92%" style="background:linear-gradient(90deg,#1D6F42,#107C41);"></div></div>
+      </div>
+      <div class="skill-card reveal" style="--hc:rgba(139,92,246,0.3);--hs:rgba(139,92,246,0.15);">
+        <span class="skill-icon">🔄</span>
+        <div class="skill-name">ETL Processing</div>
+        <div class="skill-bar"><div class="skill-fill" data-w="85%" style="background:linear-gradient(90deg,var(--purple),var(--blue));"></div></div>
+      </div>
+      <div class="skill-card reveal" style="--hc:rgba(6,182,212,0.3);--hs:rgba(6,182,212,0.15);">
+        <span class="skill-icon">🌊</span>
+        <div class="skill-name">Tailwind CSS</div>
+        <div class="skill-bar"><div class="skill-fill" data-w="80%" style="background:linear-gradient(90deg,var(--cyan),var(--blue));"></div></div>
+      </div>
+      <div class="skill-card reveal" style="--hc:rgba(59,130,246,0.3);--hs:rgba(59,130,246,0.15);">
+        <span class="skill-icon">🐙</span>
+        <div class="skill-name">GitHub</div>
+        <div class="skill-bar"><div class="skill-fill" data-w="78%" style="background:linear-gradient(90deg,#6e40c9,#3B82F6);"></div></div>
+      </div>
+      <div class="skill-card reveal" style="--hc:rgba(247,130,0,0.3);--hs:rgba(247,130,0,0.15);">
+        <span class="skill-icon">🔍</span>
+        <div class="skill-name">Root Cause Analysis</div>
+        <div class="skill-bar"><div class="skill-fill" data-w="90%" style="background:linear-gradient(90deg,#F78200,#EA580C);"></div></div>
+      </div>
+      <div class="skill-card reveal" style="--hc:rgba(0,160,220,0.3);--hs:rgba(0,160,220,0.15);">
+        <span class="skill-icon">📋</span>
+        <div class="skill-name">ServiceNow</div>
+        <div class="skill-bar"><div class="skill-fill" data-w="80%" style="background:linear-gradient(90deg,#00A0DC,#0070AD);"></div></div>
+      </div>
+      <div class="skill-card reveal" style="--hc:rgba(255,80,80,0.3);--hs:rgba(255,80,80,0.15);">
+        <span class="skill-icon">📡</span>
+        <div class="skill-name">Graylog</div>
+        <div class="skill-bar"><div class="skill-fill" data-w="74%" style="background:linear-gradient(90deg,#FF5050,#CC0000);"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-max">
+    <div class="reveal">
+      <div class="section-label">Career Journey</div>
+      <h2 class="section-title">Work Experience</h2>
+      <p class="section-sub">3+ years of real-world system support and analysis at Aurus Tech Pvt. Ltd., Pune.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-header">
+            <div>
+              <div class="tl-role">Senior System Analyst</div>
+              <div class="tl-company">Aurus Tech Pvt. Ltd. · Pune</div>
+            </div>
+            <div class="tl-date">2022 – May 2025</div>
+          </div>
+          <ul class="tl-bullets">
+            <li>Identified and diagnosed system issues across client, processor, and internal platforms by transforming complex data into actionable insights.</li>
+            <li>Designed and maintained performance dashboards ensuring data accuracy and supporting strategic decision-making.</li>
+            <li>Retrieved and analysed transaction data — approved/declined transactions and server logs — for audit and reconciliation.</li>
+            <li>Built ETL pipelines extracting data from databases, Excel files and APIs to create reliable analytical datasets.</li>
+            <li>Escalated root cause issues to clients or processors; collaborated with the product team to resolve internal platform issues within SLA.</li>
+            <li>Maintained detailed SOPs, issue logs and resolution records for knowledge sharing and compliance.</li>
+          </ul>
+          <div class="tl-tags">
+            <span class="tl-tag">ETL</span><span class="tl-tag">SQL</span><span class="tl-tag">RCA</span><span class="tl-tag">Dashboards</span><span class="tl-tag">SLA</span><span class="tl-tag">Graylog</span><span class="tl-tag">ServiceNow</span>
+          </div>
+        </div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-header">
+            <div>
+              <div class="tl-role">Associate System Analyst</div>
+              <div class="tl-company">Aurus Tech Pvt. Ltd. · Pune</div>
+            </div>
+            <div class="tl-date">July 2021 – 2022</div>
+          </div>
+          <ul class="tl-bullets">
+            <li>Conducted data analysis to uncover trends, patterns and correlations supporting strategic business decisions.</li>
+            <li>Collaborated with cross-functional teams to gather requirements, design analytical solutions and deliver projects on time.</li>
+            <li>Developed and maintained tracking systems for KPIs and critical business metrics.</li>
+            <li>Performed data cleaning and validation to ensure accuracy and reliability of reporting outputs.</li>
+            <li>Contributed to team capability through collaborative problem-solving and knowledge sharing.</li>
+          </ul>
+          <div class="tl-tags">
+            <span class="tl-tag">Data Analysis</span><span class="tl-tag">KPI Tracking</span><span class="tl-tag">Excel</span><span class="tl-tag">SQL</span><span class="tl-tag">Reporting</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-max">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label">What I've Built</div>
+      <h2 class="section-title">Projects</h2>
+      <p class="section-sub" style="margin:0 auto 3rem;">A selection of work combining system analysis, front-end development, and data engineering.</p>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-img" style="background:linear-gradient(135deg,rgba(59,130,246,0.15),rgba(139,92,246,0.15));">📊</div>
+        <div class="project-body">
+          <div class="project-title">Transaction Analytics Dashboard</div>
+          <div class="project-desc">Real-time dashboard tracking approved/declined transactions with trend analysis, drill-down filters and automated anomaly alerts.</div>
+          <div class="project-tags"><span class="project-tag">React JS</span><span class="project-tag">SQL</span><span class="project-tag">Excel</span><span class="project-tag">ETL</span></div>
+          <div class="project-btns">
+            <a href="https://santoshwavhale.github.io/MyProfile/" target="_blank" class="project-btn primary">Live Demo</a>
+            <a href="https://github.com/SantoshWavhale" target="_blank" class="project-btn">GitHub</a>
+          </div>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-img" style="background:linear-gradient(135deg,rgba(6,182,212,0.15),rgba(59,130,246,0.15));">🌐</div>
+        <div class="project-body">
+          <div class="project-title">Personal Portfolio Website</div>
+          <div class="project-desc">A fully responsive personal portfolio showcasing skills, experience and projects with modern UI/UX design and smooth animations.</div>
+          <div class="project-tags"><span class="project-tag">React JS</span><span class="project-tag">HTML</span><span class="project-tag">Tailwind CSS</span><span class="project-tag">JavaScript</span></div>
+          <div class="project-btns">
+            <a href="https://santoshwavhale.github.io/MyProfile/" target="_blank" class="project-btn primary">Live Demo</a>
+            <a href="https://github.com/SantoshWavhale" target="_blank" class="project-btn">GitHub</a>
+          </div>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-img" style="background:linear-gradient(135deg,rgba(139,92,246,0.15),rgba(6,182,212,0.15));">🔄</div>
+        <div class="project-body">
+          <div class="project-title">ETL Data Pipeline</div>
+          <div class="project-desc">Automated ETL pipeline extracting data from multiple sources (DB, Excel, APIs), transforming and loading into reporting datasets.</div>
+          <div class="project-tags"><span class="project-tag">SQL</span><span class="project-tag">Oracle</span><span class="project-tag">PostgreSQL</span><span class="project-tag">Python</span></div>
+          <div class="project-btns">
+            <a href="https://github.com/SantoshWavhale" target="_blank" class="project-btn primary">View Project</a>
+            <a href="https://github.com/SantoshWavhale" target="_blank" class="project-btn">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-max">
+    <div class="reveal">
+      <div class="section-label">Credentials</div>
+      <h2 class="section-title">Certifications</h2>
+      <p class="section-sub">Formal training and certifications that back my technical skills.</p>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card reveal">
+        <div class="cert-icon" style="background:rgba(247,130,0,0.1);">☕</div>
+        <div><div class="cert-name">Java Development</div><div class="cert-org">RS Softech Pune</div></div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon" style="background:rgba(59,130,246,0.1);">🌐</div>
+        <div><div class="cert-name">Web Development – Front End</div><div class="cert-org">Certified Course</div></div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon" style="background:rgba(6,182,212,0.1);">🎓</div>
+        <div><div class="cert-name">B.E. Information Technology</div><div class="cert-org">Savitribai Phule Pune University · 2019</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-max">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label">By the Numbers</div>
+      <h2 class="section-title">Achievements</h2>
+      <p class="section-sub" style="margin:0 auto 3rem;">Measurable impact delivered across 3+ years of professional work.</p>
+    </div>
+    <div class="ach-grid">
+      <div class="ach-card reveal" style="--ach-grad:linear-gradient(135deg,var(--blue),var(--cyan));--ach-glow:rgba(59,130,246,0.2);">
+        <div class="ach-num" style="background:linear-gradient(135deg,var(--blue),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;"><span class="counter" data-target="3">0</span><span class="ach-unit">+</span></div>
+        <div class="ach-label">Years of Experience</div>
+      </div>
+      <div class="ach-card reveal" style="--ach-glow:rgba(139,92,246,0.2);">
+        <div class="ach-num" style="background:linear-gradient(135deg,var(--purple),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;"><span class="counter" data-target="100">0</span><span class="ach-unit">%</span></div>
+        <div class="ach-label">SLA Compliance Rate</div>
+      </div>
+      <div class="ach-card reveal" style="--ach-glow:rgba(6,182,212,0.2);">
+        <div class="ach-num" style="background:linear-gradient(135deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;"><span class="counter" data-target="5">0</span><span class="ach-unit">+</span></div>
+        <div class="ach-label">Technologies Mastered</div>
+      </div>
+      <div class="ach-card reveal" style="--ach-glow:rgba(59,130,246,0.2);">
+        <div class="ach-num" style="background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;"><span class="counter" data-target="2">0</span><span class="ach-unit">+</span></div>
+        <div class="ach-label">Certifications Earned</div>
+      </div>
+      <div class="ach-card reveal" style="--ach-glow:rgba(139,92,246,0.2);">
+        <div class="ach-num" style="background:linear-gradient(135deg,var(--purple),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;"><span class="counter" data-target="10">0</span><span class="ach-unit">+</span></div>
+        <div class="ach-label">Clients Supported</div>
+      </div>
+      <div class="ach-card reveal" style="--ach-glow:rgba(6,182,212,0.2);">
+        <div class="ach-num" style="background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;"><span class="counter" data-target="500">0</span><span class="ach-unit">+</span></div>
+        <div class="ach-label">Tickets Resolved</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-max">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label">Let's Connect</div>
+      <h2 class="section-title">Get In Touch</h2>
+      <p class="section-sub" style="margin:0 auto 3rem;">Actively looking for Technical Support Engineer / System Analyst roles in Pune. Let's talk!</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal-left">
+        <div class="contact-item">
+          <div class="contact-icon" style="background:rgba(59,130,246,0.1);">📍</div>
+          <div><div class="contact-label">Location</div><div class="contact-val">Pune, Maharashtra</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon" style="background:rgba(6,182,212,0.1);">📧</div>
+          <div><div class="contact-label">Email</div><div class="contact-val">santoshwavhale@gmail.com</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon" style="background:rgba(139,92,246,0.1);">📞</div>
+          <div><div class="contact-label">Phone</div><div class="contact-val">+91-9552725571</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon" style="background:rgba(59,130,246,0.1);">💼</div>
+          <div><div class="contact-label">LinkedIn</div><div class="contact-val">wavhale-santosh-93a1903b6</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon" style="background:rgba(139,92,246,0.1);">🐙</div>
+          <div><div class="contact-label">GitHub</div><div class="contact-val">github.com/SantoshWavhale</div></div>
+        </div>
+        <a href="#" onclick="alert('Add your PDF resume URL here')" class="btn-grad" style="text-align:center;justify-content:center;margin-top:0.5rem;">⬇ Download Resume</a>
+      </div>
+      <div class="reveal-right">
+        <div class="contact-form">
+          <input class="form-input" type="text" placeholder="Your Name"/>
+          <input class="form-input" type="email" placeholder="Your Email"/>
+          <input class="form-input" type="text" placeholder="Subject"/>
+          <textarea class="form-input" placeholder="Your Message"></textarea>
+          <button class="form-submit" onclick="alert('Message sent! I will get back to you soon.')">Send Message →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-wave"></div>
+  <div class="footer-inner">
+    <div class="footer-copy">© 2026 Santosh Wavhale · Built with passion · Pune, Maharashtra</div>
+    <div class="footer-socials">
+      <a href="https://www.linkedin.com/in/wavhale-santosh-93a1903b6" target="_blank" class="social-icon">in</a>
+      <a href="https://github.com/SantoshWavhale" target="_blank" class="social-icon">⌥</a>
+      <a href="mailto:santoshwavhale@gmail.com" class="social-icon">@</a>
+    </div>
+    <div class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+  </div>
+</footer>
+
+<script>
+// ── CURSOR ──
+const cursor=document.getElementById('cursor');
+const ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';document.getElementById('spotlight').style.left=mx+'px';document.getElementById('spotlight').style.top=my+'px';});
+function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}animRing();
+document.querySelectorAll('a,button,.skill-card,.glass-card').forEach(el=>{el.addEventListener('mouseenter',()=>{cursor.style.transform='translate(-50%,-50%) scale(2)';ring.style.transform='translate(-50%,-50%) scale(1.4)';});el.addEventListener('mouseleave',()=>{cursor.style.transform='translate(-50%,-50%) scale(1)';ring.style.transform='translate(-50%,-50%) scale(1)';});});
+
+// ── SCROLL PROGRESS ──
+window.addEventListener('scroll',()=>{
+  const pct=window.scrollY/(document.body.scrollHeight-window.innerHeight)*100;
+  document.getElementById('scroll-progress').style.width=pct+'%';
+});
+
+// ── PARTICLES ──
+const pc=document.getElementById('particles');
+for(let i=0;i<35;i++){
+  const p=document.createElement('div');
+  p.className='particle';
+  const sz=Math.random()*3+1;
+  const colors=['rgba(59,130,246,0.6)','rgba(139,92,246,0.5)','rgba(6,182,212,0.5)'];
+  p.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*3)]};animation-duration:${Math.random()*15+10}s;animation-delay:-${Math.random()*15}s;`;
+  pc.appendChild(p);
+}
+
+// ── TYPING EFFECT ──
+const phrases=["System Analysis","Technical Troubleshooting","ETL Data Pipelines","React JS Development","SQL & Database Design","Performance Dashboards","Root Cause Analysis","SLA Compliance"];
+let pi=0,ci=0,del=false;
+const el=document.getElementById('typing-text');
+function type(){
+  const word=phrases[pi];
+  if(!del){el.textContent=word.slice(0,++ci);if(ci===word.length){del=true;setTimeout(type,1600);return;}}
+  else{el.textContent=word.slice(0,--ci);if(ci===0){del=false;pi=(pi+1)%phrases.length;}}
+  setTimeout(type,del?60:100);
+}type();
+
+// ── REVEAL ON SCROLL ──
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);}});
+},{threshold:0.1});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>obs.observe(el));
+
+// ── SKILL BARS ANIMATE ──
+const barObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.skill-fill').forEach(b=>{b.style.width=b.dataset.w;});}});
+},{threshold:0.3});
+document.querySelectorAll('#skills').forEach(s=>barObs.observe(s));
+document.querySelectorAll('.skill-fill').forEach(b=>b.style.width='0%');
+
+// ── COUNTER ANIMATION ──
+const cntObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.counter').forEach(c=>{
+        const target=+c.dataset.target;
+        let cur=0;const step=target/60;
+        const t=setInterval(()=>{cur=Math.min(cur+step,target);c.textContent=Math.floor(cur);if(cur>=target)clearInterval(t);},25);
+      });
+      cntObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.4});
+document.querySelectorAll('#achievements').forEach(s=>cntObs.observe(s));
+</script>
+</body>
+</html>
